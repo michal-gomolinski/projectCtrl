@@ -12,6 +12,10 @@ class Project(models.Model):
 class Ticket(models.Model):
     title = models.CharField()
     description = models.TextField()
+    status = models.CharField()
     created_by = models.ForeignKey(User, null=True, blank=True)
+    closed_by = models.ForeignKey(User, null=True, blank=True)
+    assigned = models.ForeignKey(User, null=True, blank=True)
     created_at = models.DateField(auto_now_add=True) 
     updated_at = models.DateField(auto_now=True)
+    closed_at = models.DateField()
