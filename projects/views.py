@@ -3,6 +3,9 @@ from django.views import generic
 
 
 # Create your views here.
+class LandingPage(generic.TemplateView):
+    template_name = 'landing-page.html'
+
 class ProjectCreateView(generic.CreateView):
     pass
 
