@@ -130,6 +130,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"

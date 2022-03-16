@@ -1,13 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class User(AbstractUser):
+    pass
+
+
 class Project(models.Model):
     name = models.CharField()
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now_add=True) 
+    created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+
 
 class Ticket(models.Model):
     title = models.CharField()
@@ -16,6 +21,6 @@ class Ticket(models.Model):
     created_by = models.ForeignKey(User, null=True, blank=True)
     closed_by = models.ForeignKey(User, null=True, blank=True)
     assigned = models.ForeignKey(User, null=True, blank=True)
-    created_at = models.DateField(auto_now_add=True) 
+    created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     closed_at = models.DateField()

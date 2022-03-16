@@ -1,10 +1,23 @@
-from django.shortcuts import render
+from audioop import reverse
+from re import template
+from django.shortcuts import render, reverse
 from django.views import generic
-
+from .forms import CreateUserForm
 
 # Create your views here.
+
+
+class SignupView(generic.CreateView):
+    template_name = 'registration/signup.html'
+    form_class = CreateUserForm
+
+    def get_success_url(self):
+        return reverse('login')
+
+
 class LandingPage(generic.TemplateView):
     template_name = 'landing-page.html'
+
 
 class ProjectCreateView(generic.CreateView):
     pass
@@ -24,7 +37,6 @@ class ProjectUpdateView(generic.UpdateView):
 
 class ProjectDeleteView(generic.DeleteView):
     pass
-
 
 
 class TicketCreateView(generic.CreateView):
