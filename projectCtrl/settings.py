@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projects',
+    'crispy_forms',
+    'crispy_tailwind',
     'tailwind',
     'theme',
     'django_browser_reload'
@@ -133,9 +136,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'projects.User'
 
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = 'tailwind'
 
 INTERNAL_IPS = [
     "127.0.0.1",

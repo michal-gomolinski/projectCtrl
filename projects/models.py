@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.template.defaultfilters import slugify
 
 
 class User(AbstractUser):
@@ -7,20 +8,30 @@ class User(AbstractUser):
 
 
 class Project(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=120)
+    slug = models.SlugField(blank=True, null=True)
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
+
 
 class Ticket(models.Model):
-    title = models.CharField()
+    title = models.CharField(max_length=120)
+    slug = models.SlugField()
     description = models.TextField()
-    status = models.CharField()
-    created_by = models.ForeignKey(User, null=True, blank=True)
-    closed_by = models.ForeignKey(User, null=True, blank=True)
-    assigned = models.ForeignKey(User, null=True, blank=True)
+    status = models.CharField(max_length=50)
+    created_by = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, related_name='created_tickets', related_query_name='created_ticket')
+    closed_by = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, related_name='closed_tickets', related_query_name='closed_ticket')
+    assigned = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, related_name='assigned_tickets', related_query_name='assigned_ticket')
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     closed_at = models.DateField()

@@ -1,20 +1,18 @@
-{% load static %}
-{% load tailwind_tags %}
+{% load static %} {% load tailwind_tags %}
 
-<!Doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>projectCtrl</title>
-        <link href="{% static 'css/styles.css'%}" rel="stylesheet">
-        {% tailwind_css %}
-    </head>
-    <body>
-        {% include "navbar.html" %}
-        <div class="max-w-7xl mx-auto">
-            {% block content %}
-            {% endblock content %}
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>projectCtrl</title>
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+    {% tailwind_css %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="max-w-7xl mx-auto">
+      {% block content %} {% endblock content %}
+    </div>
+  </body>
 </html>
