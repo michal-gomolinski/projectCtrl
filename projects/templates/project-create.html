@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="pt-3 max-w-md mx-auto">
+  {% if messages %} {% for message in messages %} Wa: {{ message }} {% endfor %}
+  {% endif %}
+  <form method="post">
+    {{ form|crispy }} {% csrf_token %}
+    <input type="submit" value="submit" />
+  </form>
+</div>
+{% endblock content %}

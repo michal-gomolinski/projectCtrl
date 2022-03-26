@@ -15,11 +15,6 @@ class Project(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)
-
 
 class Ticket(models.Model):
     title = models.CharField(max_length=120)

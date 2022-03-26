@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="pt-3 max-w-md mx-auto">
+  <form method="post">
+    {{ form|crispy }} {% csrf_token %}
+    Are you sure you want to delete?
+    <input type="submit" value="Yes" />
+    <a href="{% url 'projects:project-detail' project.slug %}">No</a>
+  </form>
+</div>
+{% endblock content %}

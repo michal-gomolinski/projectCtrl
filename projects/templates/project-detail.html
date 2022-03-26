@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% load tailwind_tags %}
+{% block content %}
+  {{ project.name }}
+  <p><a href="{% url 'projects:project-delete' project.slug %}">Delete</a></p>
+</div>
+{% endblock content %}
